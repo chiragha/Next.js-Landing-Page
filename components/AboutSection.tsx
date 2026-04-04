@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+
 export default function AboutSection() {
   return (
     <section id="about" className="relative  bg-[#fff8ef] text-black">

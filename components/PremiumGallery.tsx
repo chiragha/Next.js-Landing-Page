@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useMotionValue, animate } from "framer-motion";
+import { motion, useMotionValue,  animate } from "framer-motion";
 import { useEffect } from "react";
 
 const images = [
