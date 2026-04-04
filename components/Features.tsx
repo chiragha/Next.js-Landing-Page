@@ -20,7 +20,6 @@ export default function Features() {
     { icon: Mountain, title: "Scenic Views" },
   ];
 
-  // ✅ Properly typed variants
   const container: Variants = {
     hidden: {},
     show: {
@@ -35,69 +34,42 @@ export default function Features() {
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }, // ✅ safe easing
+      transition: { duration: 0.5, ease: "easeOut" }, // ✅ SAFE
     },
   };
 
   return (
-    <section
-      id="features"
-      className="relative bg-[#d9d2c7] text-black py-16 sm:py-20 md:py-28"
-    >
-      {/* HEADING */}
+    <section className="bg-[#d9d2c7] py-20">
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }} // ✅ FIXED
-        transition={{ duration: 0.6 }}
-        className="text-center font-serif text-[#7a5a1e] mb-12 md:mb-16
-        text-2xl sm:text-3xl md:text-5xl"
+        viewport={{ once: true }}
+        className="text-center text-4xl font-serif text-[#7a5a1e]"
       >
         Key Features
       </motion.h2>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 w-full">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }} // ✅ FIXED
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10"
-        >
-          {features.map((itemData, index) => {
-            const Icon = itemData.icon;
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mt-10 px-6"
+      >
+        {features.map((itemData, index) => {
+          const Icon = itemData.icon;
 
-            return (
-              <motion.div
-                key={index}
-                variants={item}
-                whileHover={{ y: -6, scale: 1.02 }}
-                className="group relative p-6 sm:p-7 md:p-8 rounded-2xl
-                bg-white/40 backdrop-blur-md border border-white/30
-                shadow-md hover:shadow-xl transition duration-300
-                cursor-pointer overflow-hidden"
-              >
-                {/* Glow Effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-[#7a5a1e]/10 to-transparent"></div>
-
-                {/* ICON */}
-                <Icon
-                  size={22}
-                  className="text-[#7a5a1e] group-hover:text-white transition"
-                />
-
-                {/* TITLE */}
-                <p className="text-sm sm:text-base md:text-lg font-medium text-center sm:text-left">
-                  {itemData.title}
-                </p>
-
-                {/* Bottom Line */}
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#7a5a1e] group-hover:w-full transition-all duration-500"></div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-      </div>
+          return (
+            <motion.div
+              key={index}
+              variants={item}
+              className="p-6 bg-white rounded-xl shadow"
+            >
+              <Icon className="mb-3 text-[#7a5a1e]" />
+              <p>{itemData.title}</p>
+            </motion.div>
+          );
+        })}
+      </motion.div>
     </section>
   );
 }

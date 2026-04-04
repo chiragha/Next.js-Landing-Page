@@ -9,14 +9,7 @@ import {
 } from "react-icons/fa";
 
 export default function Footer() {
-  const year = new Date().getFullYear(); // ✅ safer usage
-
-  const fadeUp = {
-    initial: { opacity: 0, y: 40 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" },
-    viewport: { once: true },
-  };
+  const year = new Date().getFullYear();
 
   return (
     <footer className="bg-[#0f0f0f] text-gray-300 px-6 md:px-20 py-16">
@@ -25,7 +18,12 @@ export default function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 border-b border-white/10 pb-10">
         
         {/* BRAND */}
-        <motion.div {...fadeUp}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <h2 className="text-2xl font-serif text-white mb-4">
             <span className="text-[#7a5a1e] text-3xl">Luxury</span>
             <span className="text-[#dd2525]">homes</span>
@@ -37,7 +35,12 @@ export default function Footer() {
         </motion.div>
 
         {/* LINKS */}
-        <motion.div {...fadeUp}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+        >
           <h3 className="text-white font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li className="hover:text-white cursor-pointer">Home</li>
@@ -48,7 +51,12 @@ export default function Footer() {
         </motion.div>
 
         {/* CONTACT */}
-        <motion.div {...fadeUp}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        >
           <h3 className="text-white font-semibold mb-4">Contact</h3>
           <ul className="space-y-2 text-sm text-gray-400">
             <li>Mumbai, India</li>
@@ -58,7 +66,12 @@ export default function Footer() {
         </motion.div>
 
         {/* SOCIAL */}
-        <motion.div {...fadeUp}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+        >
           <h3 className="text-white font-semibold mb-4">Follow Us</h3>
 
           <div className="flex gap-4">
