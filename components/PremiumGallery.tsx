@@ -1,8 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useMotionValue, animate } from "framer-motion";
-import { useEffect, useRef } from "react";
 
 const images = [
   { src: "/slider.avif", title: "Modern Living" },
@@ -12,24 +10,6 @@ const images = [
 ];
 
 export default function PremiumGallery() {
-  const x = useMotionValue(0);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const scrollWidth = containerRef.current.scrollWidth;
-    const halfWidth = scrollWidth / 2;
-
-    const controls = animate(x, [0, -halfWidth], {
-      ease: "linear",
-      duration: 25,
-      repeat: Infinity,
-    });
-
-    return () => controls.stop(); // ✅ proper cleanup
-  }, [x]);
-
   return (
     <section id="gallery" className="bg-white py-24 overflow-hidden">
       
@@ -43,18 +23,11 @@ export default function PremiumGallery() {
 
       {/* SLIDER */}
       <div className="relative w-full overflow-hidden">
-        <motion.div
-          ref={containerRef}
-          style={{ x }}
-          drag="x"
-          dragConstraints={{ left: -1000, right: 0 }} // ✅ safer fallback
-          className="flex gap-8 cursor-grab active:cursor-grabbing"
-        >
+        <div className="flex gap-8 animate-scroll">
           {[...images, ...images].map((item, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.05 }}
-              className="relative min-w-[70vw] h-[85vh] rounded-2xl overflow-hidden"
+            <div
+              key={`${item.title}-${index}`}
+              className="relative min-w-[70vw] h-[85vh] rounded-2xl overflow-hidden group"
             >
               {/* IMAGE */}
               <Image
@@ -62,25 +35,20 @@ export default function PremiumGallery() {
                 alt={item.title}
                 fill
                 sizes="70vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 priority={index === 0}
               />
 
               {/* OVERLAY */}
-              <div className="absolute inset-0 bg-black/20 hover:bg-black/50 transition duration-500"></div>
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition duration-500"></div>
 
               {/* TEXT */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileHover={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: "easeOut" as const }} // ✅ safe easing
-                className="absolute bottom-10 left-10 text-white"
-              >
+              <div className="absolute bottom-10 left-10 text-white opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition duration-500">
                 <h3 className="text-3xl font-serif">{item.title}</h3>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

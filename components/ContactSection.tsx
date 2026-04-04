@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function ContactSection() {
@@ -16,10 +15,7 @@ export default function ContactSection() {
       </div>
 
       {/* HEADER */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
+      <div
         className="text-center mb-12 sm:mb-16 relative z-10"
       >
         <h2 className="font-medium text-2xl sm:text-3xl md:text-5xl text-[#7a5c2e] font-serif mb-4">
@@ -28,16 +24,13 @@ export default function ContactSection() {
         <p className="text-black text-sm sm:text-base md:text-lg font-sans max-w-xl mx-auto">
           Have questions or want to schedule a visit? Fill out the form and our team will get back to you shortly.
         </p>
-      </motion.div>
+      </div>
 
       {/* CONTENT GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 relative z-10 max-w-7xl mx-auto">
 
         {/* LEFT INFO */}
-        <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
+        <div
           className="space-y-6 sm:space-y-8"
         >
           <div className="flex items-start gap-4">
@@ -63,13 +56,10 @@ export default function ContactSection() {
               <p className="text-black font-medium">Mumbai, India</p>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* RIGHT FORM */}
-        <motion.form
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
+        <form
           className="bg-white/50 hover:shadow-[0_0_40px_rgba(122,92,46,0.3)]
           backdrop-blur-xl p-6 sm:p-8 rounded-2xl border border-white/10 space-y-6"
         >
@@ -119,15 +109,13 @@ export default function ContactSection() {
           </div>
 
           {/* BUTTON */}
-          <motion.button
+          <button
             type="submit"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
             className="w-full py-3 rounded-full bg-[#7a5c2e] hover:bg-[#5c4421] transition duration-300"
           >
             Send Message
-          </motion.button>
-        </motion.form>
+          </button>
+        </form>
       </div>
     </section>
   );

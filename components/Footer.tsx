@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   FaFacebookF,
   FaInstagram,
@@ -13,34 +12,22 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#0f0f0f] text-gray-300 px-6 md:px-20 py-16">
-      
       {/* TOP GRID */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 border-b border-white/10 pb-10">
-        
         {/* BRAND */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6,ease: "easeOut" as const }}
-        >
+        <div>
           <h2 className="text-2xl font-serif text-white mb-4">
             <span className="text-[#7a5a1e] text-3xl">Luxury</span>
             <span className="text-[#dd2525]">homes</span>
           </h2>
           <p className="text-sm text-gray-400">
-            Experience premium living spaces crafted with elegance, comfort,
-            and modern design.
+            Experience premium living spaces crafted with elegance, comfort, and
+            modern design.
           </p>
-        </motion.div>
+        </div>
 
         {/* LINKS */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-        >
+        <div>
           <h3 className="text-white font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li className="hover:text-white cursor-pointer">Home</li>
@@ -48,30 +35,20 @@ export default function Footer() {
             <li className="hover:text-white cursor-pointer">Amenities</li>
             <li className="hover:text-white cursor-pointer">Contact</li>
           </ul>
-        </motion.div>
+        </div>
 
         {/* CONTACT */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-        >
+        <div>
           <h3 className="text-white font-semibold mb-4">Contact</h3>
           <ul className="space-y-2 text-sm text-gray-400">
             <li>Mumbai, India</li>
             <li>+91 98765 43210</li>
             <li>info@luxuryhomes.com</li>
           </ul>
-        </motion.div>
+        </div>
 
         {/* SOCIAL */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-        >
+        <div>
           <h3 className="text-white font-semibold mb-4">Follow Us</h3>
 
           <div className="flex gap-4">
@@ -83,10 +60,10 @@ export default function Footer() {
                 >
                   <Icon size={18} />
                 </div>
-              )
+              ),
             )}
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* BOTTOM BAR */}

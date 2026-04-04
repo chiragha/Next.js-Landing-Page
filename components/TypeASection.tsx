@@ -1,6 +1,4 @@
 "use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
 
 const data = [
@@ -28,15 +26,9 @@ export default function TypeASection() {
       className="bg-[#7a5c2e] text-white py-16 sm:py-20 px-4 sm:px-6 md:px-12 lg:px-20"
     >
       {/* HEADING */}
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }} // ✅ FIXED
-        transition={{ duration: 0.6 }}
-        className="text-left text-4xl sm:text-5xl md:text-6xl font-serif mb-16"
-      >
+      <h2 className="text-left text-4xl sm:text-5xl md:text-6xl font-serif mb-16">
         Choose Your <br /> Apartment
-      </motion.h2>
+      </h2>
 
       {data.map((item, index) => (
         <div
@@ -46,13 +38,7 @@ export default function TypeASection() {
           {/* IMAGE SECTION */}
           <div className="flex gap-3 sm:gap-4">
             {/* MAIN IMAGE */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }} // ✅ FIXED
-              transition={{ duration: 0.6 }}
-              className="relative w-[65%] h-[250px] sm:h-[320px] md:h-[400px] lg:h-[500px] rounded-xl overflow-hidden"
-            >
+            <div className="relative w-[65%] h-[250px] sm:h-[320px] md:h-[400px] lg:h-[500px] rounded-xl overflow-hidden">
               <Image
                 src={item.main}
                 alt={item.title}
@@ -60,16 +46,10 @@ export default function TypeASection() {
                 sizes="(max-width: 768px) 100vw, 65vw" // ✅ FIXED
                 className="object-cover hover:scale-105 transition duration-500"
               />
-            </motion.div>
+            </div>
 
             {/* SIDE IMAGE */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }} // ✅ FIXED
-              transition={{ duration: 0.6 }}
-              className="relative w-[35%] h-[250px] sm:h-[320px] md:h-[400px] lg:h-[500px] rounded-xl overflow-hidden"
-            >
+            <div className="relative w-[35%] h-[250px] sm:h-[320px] md:h-[400px] lg:h-[500px] rounded-xl overflow-hidden">
               <Image
                 src={item.side}
                 alt={`${item.title} side`}
@@ -77,17 +57,11 @@ export default function TypeASection() {
                 sizes="(max-width: 768px) 100vw, 35vw" // ✅ FIXED
                 className="object-cover hover:scale-105 transition duration-500"
               />
-            </motion.div>
+            </div>
           </div>
 
           {/* CONTENT */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} // ✅ FIXED
-            transition={{ duration: 0.6 }}
-            className="text-center md:text-left"
-          >
+          <div className="text-center md:text-left">
             <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif mb-4 sm:mb-6">
               {item.title} {/* ✅ changed from h2 → h3 */}
             </h3>
@@ -117,7 +91,7 @@ export default function TypeASection() {
             >
               Download Plan →
             </a>
-          </motion.div>
+          </div>
         </div>
       ))}
     </section>

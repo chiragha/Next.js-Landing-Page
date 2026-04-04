@@ -10,7 +10,6 @@ import {
   Coffee,
   Building2,
 } from "lucide-react";
-import { motion } from "framer-motion";
 
 const amenities = [
   { icon: Dumbbell, title: "Fitness Center", img: "/gym.avif" },
@@ -26,18 +25,9 @@ const amenities = [
 export default function Amenities() {
   return (
     <section id="amenities" className="bg-[#d9d2c7] py-24">
-      
       {/* HEADING */}
       <div className="max-w-7xl mx-auto px-10 mb-16">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" as const }}
-          className="text-5xl font-serif text-[#7a5a1e]"
-        >
-          Amenities
-        </motion.h2>
+        <h2 className="text-5xl font-serif text-[#7a5a1e]">Amenities</h2>
       </div>
 
       {/* GRID */}
@@ -46,26 +36,15 @@ export default function Amenities() {
           const Icon = item.icon;
 
           return (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.05 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.1, // stagger effect manually
-                ease: "easeOut",
-              }}
+            <div
+              key={item.title} // ✅ FIX
               className="relative h-[220px] rounded-2xl overflow-hidden cursor-pointer"
             >
               {/* IMAGE */}
-              <motion.img
+              <img
                 src={item.img}
                 alt={item.title}
                 className="w-full h-full object-cover"
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.5 }}
               />
 
               {/* OVERLAY */}
@@ -78,7 +57,7 @@ export default function Amenities() {
                   {item.title}
                 </p>
               </div>
-            </motion.div>
+            </div>
           );
         })}
       </div>
