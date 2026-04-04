@@ -20,7 +20,8 @@ export default function Features() {
     { icon: Mountain, title: "Scenic Views" },
   ];
 
-  const container = {
+  // ✅ Properly typed variants
+  const container: Variants = {
     hidden: {},
     show: {
       transition: {
@@ -29,12 +30,12 @@ export default function Features() {
     },
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, y: 40 },
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 },
+      transition: { duration: 0.5, ease: "easeOut" }, // ✅ safe easing
     },
   };
 
@@ -43,10 +44,11 @@ export default function Features() {
       id="features"
       className="relative bg-[#d9d2c7] text-black py-16 sm:py-20 md:py-28"
     >
-      {/* 🔥 HEADING */}
+      {/* HEADING */}
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }} // ✅ FIXED
         transition={{ duration: 0.6 }}
         className="text-center font-serif text-[#7a5a1e] mb-12 md:mb-16
         text-2xl sm:text-3xl md:text-5xl"
@@ -59,7 +61,7 @@ export default function Features() {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-100px" }} // ✅ FIXED
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10"
         >
           {features.map((itemData, index) => {
@@ -75,20 +77,21 @@ export default function Features() {
                 shadow-md hover:shadow-xl transition duration-300
                 cursor-pointer overflow-hidden"
               >
-                {/* 🔥 Glow Effect */}
+                {/* Glow Effect */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-[#7a5a1e]/10 to-transparent"></div>
 
                 {/* ICON */}
                 <Icon
                   size={22}
-                  className="text-[#7a5a1e]  group-hover:text-white transition"
+                  className="text-[#7a5a1e] group-hover:text-white transition"
                 />
+
                 {/* TITLE */}
                 <p className="text-sm sm:text-base md:text-lg font-medium text-center sm:text-left">
                   {itemData.title}
                 </p>
 
-                {/* 🔥 Bottom Line */}
+                {/* Bottom Line */}
                 <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#7a5a1e] group-hover:w-full transition-all duration-500"></div>
               </motion.div>
             );
