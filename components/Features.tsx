@@ -29,14 +29,21 @@ export default function Features() {
     },
   };
 
-  const item: Variants = {
-    hidden: { opacity: 0, y: 40 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }, // ✅ SAFE
+
+const item: Variants = {
+  rest: {
+    opacity: 0,
+    y: 20,
+  },
+  hover: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1],
     },
-  };
+  },
+};
 
   return (
     <section className="bg-[#d9d2c7] py-20">

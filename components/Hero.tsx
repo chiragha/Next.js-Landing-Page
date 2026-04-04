@@ -106,7 +106,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
-            transition={{ duration: 0.4, ease: "easeOut" }} // ✅ FIXED
+            transition={{ duration: 0.4, ease: "easeOut" as const}} // ✅ FIXED
             className="fixed inset-0 bg-black text-white flex flex-col items-center justify-center z-50"
           >
             <button

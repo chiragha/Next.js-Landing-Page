@@ -26,7 +26,7 @@ export default function CTA() {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}   // ✅ prevents hydration issues
-        transition={{ duration: 0.7, ease: "easeOut" }} // ✅ safe easing
+        transition={{ duration: 0.7, ease: "easeOut" as const}} // ✅ safe easing
         className="relative z-10 text-center px-6"
       >
         <h2 className="text-4xl md:text-6xl font-serif mb-6">

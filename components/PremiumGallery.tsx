@@ -73,7 +73,7 @@ export default function PremiumGallery() {
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileHover={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: "easeOut" }} // ✅ safe easing
+                transition={{ duration: 0.4, ease: "easeOut" as const }} // ✅ safe easing
                 className="absolute bottom-10 left-10 text-white"
               >
                 <h3 className="text-3xl font-serif">{item.title}</h3>

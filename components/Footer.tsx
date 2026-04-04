@@ -22,7 +22,7 @@ export default function Footer() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6,ease: "easeOut" as const }}
         >
           <h2 className="text-2xl font-serif text-white mb-4">
             <span className="text-[#7a5a1e] text-3xl">Luxury</span>
