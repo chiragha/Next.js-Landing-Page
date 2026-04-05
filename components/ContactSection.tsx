@@ -1,8 +1,23 @@
 "use client";
 
 import { Mail, Phone, MapPin } from "lucide-react";
+import { motion, easeOut } from "framer-motion";
 
 export default function ContactSection() {
+  const container = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.2 } },
+  };
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOut } },
+  };
+
+  const buttonHover = {
+    hover: { scale: 1.05, transition: { duration: 0.3, ease: easeOut } },
+  };
+
   return (
     <section
       id="contact"
@@ -15,53 +30,56 @@ export default function ContactSection() {
       </div>
 
       {/* HEADER */}
-      <div
+      <motion.div
         className="text-center mb-12 sm:mb-16 relative z-10"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        variants={container}
       >
-        <h2 className="font-medium text-2xl sm:text-3xl md:text-5xl text-[#7a5c2e] font-serif mb-4">
+        <motion.h2
+          className="font-medium text-2xl sm:text-3xl md:text-5xl text-[#7a5c2e] font-serif mb-4"
+          variants={fadeUp}
+        >
           Get In Touch
-        </h2>
-        <p className="text-black text-sm sm:text-base md:text-lg font-sans max-w-xl mx-auto">
+        </motion.h2>
+        <motion.p
+          className="text-black text-sm sm:text-base md:text-lg font-sans max-w-xl mx-auto"
+          variants={fadeUp}
+        >
           Have questions or want to schedule a visit? Fill out the form and our team will get back to you shortly.
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
       {/* CONTENT GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 relative z-10 max-w-7xl mx-auto">
-
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 relative z-10 max-w-7xl mx-auto"
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         {/* LEFT INFO */}
-        <div
-          className="space-y-6 sm:space-y-8"
-        >
-          <div className="flex items-start gap-4">
-            <Mail className="text-[#7a5c2e]" />
-            <div>
-              <h4 className="font-semibold text-black">Email</h4>
-              <p className="text-black font-medium">info@luxuryhomes.com</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <Phone className="text-[#7a5c2e]" />
-            <div>
-              <h4 className="font-semibold text-black">Phone</h4>
-              <p className="text-black font-medium">+91 12345678</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <MapPin className="text-[#7a5c2e]" />
-            <div>
-              <h4 className="font-semibold text-black">Location</h4>
-              <p className="text-black font-medium">Mumbai, India</p>
-            </div>
-          </div>
-        </div>
+        <motion.div className="space-y-6 sm:space-y-8" variants={container}>
+          {[
+            { icon: Mail, title: "Email", value: "info@luxuryhomes.com" },
+            { icon: Phone, title: "Phone", value: "+91 12345678" },
+            { icon: MapPin, title: "Location", value: "Mumbai, India" },
+          ].map((item, idx) => (
+            <motion.div key={idx} className="flex items-start gap-4" variants={fadeUp}>
+              <item.icon className="text-[#7a5c2e]" />
+              <div>
+                <h4 className="font-semibold text-black">{item.title}</h4>
+                <p className="text-black font-medium">{item.value}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
 
         {/* RIGHT FORM */}
-        <form
-          className="bg-white/50 hover:shadow-[0_0_40px_rgba(122,92,46,0.3)]
-          backdrop-blur-xl p-6 sm:p-8 rounded-2xl border border-white/10 space-y-6"
+        <motion.form
+          className="bg-white/50 hover:shadow-[0_0_40px_rgba(122,92,46,0.3)] backdrop-blur-xl p-6 sm:p-8 rounded-2xl border border-white/10 space-y-6"
+          variants={fadeUp}
         >
           {/* NAME */}
           <div className="relative">
@@ -109,14 +127,15 @@ export default function ContactSection() {
           </div>
 
           {/* BUTTON */}
-          <button
+          <motion.button
             type="submit"
             className="w-full py-3 rounded-full bg-[#7a5c2e] hover:bg-[#5c4421] transition duration-300"
+            whileHover={buttonHover.hover}
           >
             Send Message
-          </button>
-        </form>
-      </div>
+          </motion.button>
+        </motion.form>
+      </motion.div>
     </section>
   );
 }
