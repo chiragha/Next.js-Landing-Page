@@ -48,7 +48,7 @@ export default function Features() {
   };
 
   return (
-    <section className="bg-[#d9d2c7] py-20">
+    <section id="features" className="bg-[#d9d2c7] py-20">
       <motion.h2
         className="text-center text-4xl font-serif text-[#7a5a1e]"
         initial={{ opacity: 0, y: 20 }}
