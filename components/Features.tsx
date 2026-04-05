@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
 import {
   Layers,
   Leaf,
@@ -33,7 +33,18 @@ export default function Features() {
   // Fade-up variant for individual cards
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
+  };
+   
+
+    // Hover effect variant
+  const hoverEffect = {
+    hover: {
+      scale: 1.05,
+      y: -5,
+      boxShadow: "0px 15px 25px rgba(0,0,0,0.2)",
+      transition: { duration: 0.3, ease: easeOut },
+    },
   };
 
   return (
@@ -42,7 +53,7 @@ export default function Features() {
         className="text-center text-4xl font-serif text-[#7a5a1e]"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+         transition={{ duration: 0.8, ease: easeOut }}
         viewport={{ once: true, amount: 0.5 }}
       >
         Key Features
@@ -63,9 +74,10 @@ export default function Features() {
               key={itemData.title}
               className="p-6 bg-white text-black rounded-xl shadow flex flex-col items-center justify-center text-center"
               variants={fadeUp}
+              whileHover={hoverEffect.hover}
             >
               <Icon className="mb-3 text-[#7a5a1e]" />
-              <p>{itemData.title}</p>
+                 <p className="font-medium">{itemData.title}</p>
             </motion.div>
           );
         })}
