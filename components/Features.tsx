@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import {
   Layers,
   Leaf,
@@ -19,27 +20,56 @@ export default function Features() {
     { icon: Mountain, title: "Scenic Views" },
   ];
 
+  // Container variant for staggered animation
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2, // each card appears with 0.2s delay
+      },
+    },
+  };
+
+  // Fade-up variant for individual cards
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
   return (
     <section className="bg-[#d9d2c7] py-20">
-      <h2 className="text-center text-4xl font-serif text-[#7a5a1e]">
+      <motion.h2
+        className="text-center text-4xl font-serif text-[#7a5a1e]"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true, amount: 0.5 }}
+      >
         Key Features
-      </h2>
+      </motion.h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 text-center lg:grid-cols-3 gap-8 max-w-6xl mx-auto mt-10 px-6">
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 text-center lg:grid-cols-3 gap-8 max-w-6xl mx-auto mt-10 px-6"
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         {features.map((itemData) => {
           const Icon = itemData.icon;
 
           return (
-            <div
+            <motion.div
               key={itemData.title}
               className="p-6 bg-white text-black rounded-xl shadow flex flex-col items-center justify-center text-center"
+              variants={fadeUp}
             >
               <Icon className="mb-3 text-[#7a5a1e]" />
               <p>{itemData.title}</p>
-            </div>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </section>
   );
 }
